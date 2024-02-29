@@ -1,10 +1,16 @@
 import hashlib
+import secrets
+
 
 class Member:
     def __init__(self, name, username, password):
+        salt = '소금냠냠' + secrets.token_hex(8)
         self.name = name
         self.username = username
-        self.password = hashlib.sha512(password.encode()).hexdigest()
+        self.password = hashlib.sha512(password+salt.encode()).hexdigest()
+
+    def __str__(self):
+        return f'name : {self.name}, username : {self.username}, password : {self.password}'
 
     def display(self):
         print(f'name : {self.name} / username : {self.username}')
@@ -15,6 +21,9 @@ class Post:
         self.title = title
         self.content = content
         self.author = author
+
+    def __str__(self):
+        return f'title : {self.title}, content : {self.content}, author : {self.author}'
 
 
 members = []
