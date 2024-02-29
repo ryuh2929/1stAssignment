@@ -72,6 +72,12 @@ def user_post():
 
 user_post()
 
+yes_or_no = input('글을 추가로 입력하시겠습니까?(y/n): ').lower()
+
+while yes_or_no == 'y':
+    user_post()
+    yes_or_no = input('글을 추가로 입력하시겠습니까?(y/n): ').lower()
+
 for a in posts:
     user1 = members[0].username
     if a.author == user1:
