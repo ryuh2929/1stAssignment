@@ -7,7 +7,7 @@ class Member:
         salt = '소금냠냠' + secrets.token_hex(8)
         self.name = name
         self.username = username
-        self.password = hashlib.sha512(password+salt.encode()).hexdigest()
+        self.password = hashlib.sha512((password+salt).encode()).hexdigest()
 
     def __str__(self):
         return f'name : {self.name}, username : {self.username}, password : {self.password}'
@@ -36,6 +36,10 @@ members.append(member1)
 members.append(member2)
 members.append(member3)
 
+member4 = Member(input('사용자의 이름을 입력해주세요: '), input('사용자의 닉네임을 설정해주세요: '), input('사용자의 비밀번호를 입력해주세요: '))
+
+members.append(member4)
+
 for a in members:
     Member.display(a)
 
@@ -61,6 +65,12 @@ posts.append(post2_3)
 posts.append(post3_1)
 posts.append(post3_2)
 posts.append(post3_3)
+
+def user_post():
+    post4 = Post(input('글제목을 입력해주세요: '),input('글내용을 입력해주세요: '), members[3].username)
+    posts.append(post4)
+
+user_post()
 
 for a in posts:
     user1 = members[0].username
