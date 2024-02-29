@@ -1,8 +1,10 @@
+import hashlib
+
 class Member:
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
-        self.password = password
+        self.password = hashlib.sha512(password.encode()).hexdigest()
 
     def display(self):
         print(f'name : {self.name} / username : {self.username}')
@@ -60,3 +62,4 @@ for a in posts:
     text = 'ㅇㅅㅇ'
     if text in a.content:
         print(f'{text}가 내용에 포함된 글제목: {a.title}')
+
